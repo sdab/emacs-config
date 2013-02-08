@@ -8,7 +8,7 @@
 (global-set-key "\C-l" 'goto-line)
 
 ;; Set debuggin to true, make errors more verbose
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;; Start up a named shell in the current buffer
 (defun start-shell (name)
