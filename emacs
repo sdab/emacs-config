@@ -28,6 +28,10 @@
 (global-set-key [f3] 'start-shell1)
 (global-set-key [f4] 'start-shell2)
 
+;; add end of buffer and beginning of buffer
+(global-set-key (kbd "C-.") 'end-of-buffer)
+(global-set-key (kbd "C-,") 'beginning-of-buffer)
+
 ;; have either 1 or 2 shells come up on start up (1 if a file was opened)
 (defun startup-2shells ()
   "Starts two shells with a horizontal split"
