@@ -10,6 +10,11 @@
 ;; Set debuggin to true, make errors more verbose
 ;; (setq debug-on-error t)
 
+;; start fullscreen in windows
+(if (eq system-type 'windows-nt)
+    (w32-send-sys-command 61488)
+)
+
 ;; Start up a named shell in the current buffer
 (defun start-shell (name)
   "Starts a shell buffer with the given name in the current window."
@@ -17,12 +22,20 @@
   (shell name))
 
 ;; Define 2 shells to be used on startup
+;; use eshell in windows, otherwise shell from start-shell
 (defun start-shell1 ()
   (interactive)
-  (start-shell "shell1"))
+  (if (eq system-type 'windows-nt)
+      (eshell 1)
+    (start-shell "shell1"))
+)
+
 (defun start-shell2 ()
   (interactive)
-  (start-shell "shell2"))
+  (if (eq system-type 'windows-nt)
+      (eshell 2)
+    (start-shell "shell2"))
+)
 
 ;; set the keybinding so that f3 & f4 will start their own shells
 (global-set-key [f3] 'start-shell1)
@@ -56,23 +69,23 @@
 ;;(global-set-key "\M-/" 'hippie-expand-case-sensitive)
 (global-set-key "\C-x\C-x" 'hippie-expand)
 
-;; set default ccmode indent to 4
+;; set default ccmode indent to 2
 (setq c-default-style "bsd"
-      c-basic-offset 4)
+      c-basic-offset 2)
 
 ;; change indents from tabs to spaces
 (setq c-mode-hook
     (function (lambda ()
                 (setq indent-tabs-mode nil)
-                (setq c-indent-level 4))))
+                (setq c-indent-level 2))))
 (setq objc-mode-hook
     (function (lambda ()
                 (setq indent-tabs-mode nil)
-                (setq c-indent-level 4))))
+                (setq c-indent-level 2))))
 (setq c++-mode-hook
     (function (lambda ()
                 (setq indent-tabs-mode nil)
-                (setq c-indent-level 4))))
+                (setq c-indent-level 2))))
 
 ;; indents the whole file
 (defun indent-all ()
