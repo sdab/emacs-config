@@ -69,6 +69,9 @@
 ;;(global-set-key "\M-/" 'hippie-expand-case-sensitive)
 (global-set-key "\C-x\C-x" 'hippie-expand)
 
+;; match parens
+(show-paren-mode 1)
+
 ;; set default ccmode indent to 2
 (setq c-default-style "bsd"
       c-basic-offset 2)
