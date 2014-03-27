@@ -14,6 +14,9 @@
 (if (eq system-type 'windows-nt)
     (w32-send-sys-command 61488)
 )
+;; maximize in linux (harmless on windows?)
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 ;; Start up a named shell in the current buffer
 (defun start-shell (name)
