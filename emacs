@@ -10,6 +10,13 @@
 ;; Set debuggin to true, make errors more verbose
 ;; (setq debug-on-error t)
 
+;; shortcuts for end and begining of buffer
+(global-set-key (kbd "C-.") 'end-of-buffer)
+(global-set-key (kbd "C-,") 'beginning-of-buffer)
+
+;; shortcut for copy-region-as kill
+(global-set-key (kbd "C-j") 'copy-region-as-kill)
+
 ;; start fullscreen in windows
 (if (eq system-type 'windows-nt)
     (w32-send-sys-command 61488)
