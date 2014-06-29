@@ -17,10 +17,14 @@
 ;; shortcut for copy-region-as kill
 (global-set-key (kbd "C-j") 'copy-region-as-kill)
 
-;; start fullscreen in windows
-(if (eq system-type 'windows-nt)
-    (w32-send-sys-command 61488)
+;; windows specific settings
+(when (eq system-type 'windows-nt)
+  ;; start fullscreen in windows
+  (w32-send-sys-command 61488)
+  ;; set python unbuffered otherwise we dont flush prints
+  (setenv "PYTHONUNBUFFERED" "x")
 )
+
 ;; maximize in linux (harmless on windows?)
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
