@@ -136,9 +136,18 @@
   (untabify (point-min) (point-max)))
 
 ;; python mode
-(add-to-list 'load-path "~/.emacs.d/python-mode/") 
-(setq py-install-directory "~/.emacs.d/python-mode/")
-(require 'python-mode)
+(when (file-directory-p "~/.emacs.d/python-mode")
+  (add-to-list 'load-path "~/.emacs.d/python-mode/") 
+  (setq py-install-directory "~/.emacs.d/python-mode/")
+  (require 'python-mode)
+)
+
+;; go mode (if installed)
+(when (file-directory-p "~/.emacs.d/go-mode")
+  (add-to-list 'load-path "~/.emacs.d/go-mode")
+  (require 'go-mode-load)
+)
+
 
 ;; org-mode! for note taking and task completion
 (require 'org-install)
