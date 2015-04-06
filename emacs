@@ -160,6 +160,11 @@
 (require 'ido)
 (ido-mode t)
 
+;; start emacs server so emacsclient can be used
+(server-start)
+;; set VISUAL to emacsclient for use with server
+(setenv "VISUAL" "emacsclient")
+
 ;; use a theme, requires emacs 24
 (load-theme 'wombat t)
 
