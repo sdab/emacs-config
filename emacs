@@ -163,6 +163,7 @@
 ;; start emacs server so emacsclient can be used
 (server-start)
 ;; set VISUAL to emacsclient for use with server
+;; Note: works for eshell only
 (setenv "VISUAL" "emacsclient")
 
 ;; use a theme, requires emacs 24
