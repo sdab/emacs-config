@@ -59,6 +59,7 @@
 ;; Start up a named shell in the current buffer
 (defun start-shell (name)
   "Starts a shell buffer with the given name in the current window."
+  (interactive "BName for new shell:")
   (switch-to-buffer name)
   (shell name))
 
