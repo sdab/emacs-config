@@ -34,7 +34,7 @@
 (global-set-key (kbd "M-k") 'copy-line)
 
 
-;; Set debuggin to true, make errors more verbose
+;; Set debugging to true, make errors more verbose
 ;; (setq debug-on-error t)
 
 ;; shortcuts for end and begining of buffer
@@ -110,6 +110,9 @@
 ;; match parens
 (show-paren-mode 1)
 
+;; show column number
+(setq column-number-mode t)
+
 ;; set default ccmode indent to 2
 (setq c-default-style "bsd"
       c-basic-offset 2)
@@ -149,6 +152,15 @@
   (require 'go-mode-load)
 )
 
+;; adds the clangformat tool for c++ formatting.
+;; Need to install the clang-format cmd line tool
+;; seperately. Try apt-cache search clang-format
+;; to see available packages on ubuntu.
+(when (file-directory-p "~/.emacs.d/clang-format")
+  (add-to-list 'load-path "~/.emacs.d/clang-format")
+  (require 'clang-format)
+  (global-set-key [C-M-tab] 'clang-format-region)
+)
 
 ;; org-mode! for note taking and task completion
 (require 'org-install)
