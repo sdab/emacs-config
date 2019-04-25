@@ -41,8 +41,12 @@
 (global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-,") 'beginning-of-buffer)
 
-;; shortcut for copy-region-as kill
-(global-set-key (kbd "C-j") 'copy-region-as-kill)
+;; for bind-key command
+(require 'bind-key)
+;; shortcut for copy-region-as kill that overrides all other modes.
+(bind-key* "C-j" 'copy-region-as-kill)
+;; global shortcut for other-window
+(bind-key* "C-o" 'other-window)
 
 ;; windows specific settings
 (when (eq system-type 'windows-nt)
