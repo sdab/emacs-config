@@ -42,6 +42,7 @@
 (global-set-key (kbd "C-,") 'beginning-of-buffer)
 
 ;; for bind-key command
+(add-to-list 'load-path "~/.emacs.d/bind-key")
 (require 'bind-key)
 ;; shortcut for copy-region-as kill that overrides all other modes.
 (bind-key* "C-j" 'copy-region-as-kill)
