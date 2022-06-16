@@ -121,6 +121,8 @@
 ;; set default ccmode indent to 2
 (setq c-default-style "bsd"
       c-basic-offset 2)
+;; set js indent to 2
+(setq js-indent-level 2)
 
 ;; change indents from tabs to spaces
 (setq c-mode-hook
