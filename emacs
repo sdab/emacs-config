@@ -38,6 +38,10 @@
 ;; (setq debug-on-error t)
 
 ;; shortcuts for end and begining of buffer
+;; Note: If getting a preedit area on c-., this is a gsettings issue. Check it with:
+;; gsettings get org.freedesktop.ibus.panel.emoji hotkey
+;; and reset it with:
+;; gsettings set org.freedesktop.ibus.panel.emoji hotkey "@as []"
 (global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-,") 'beginning-of-buffer)
 
