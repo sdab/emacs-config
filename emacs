@@ -52,6 +52,8 @@
 (bind-key* "C-j" 'copy-region-as-kill)
 ;; global shortcut for other-window
 (bind-key* "C-o" 'other-window)
+;; global shortcut for compilation
+(bind-key* "C-c c" 'compile)
 
 ;; windows specific settings
 (when (eq system-type 'windows-nt)
