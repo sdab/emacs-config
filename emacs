@@ -125,8 +125,12 @@
 (setq column-number-mode t)
 
 ;; set default ccmode indent to 2
-(setq c-default-style "bsd"
-      c-basic-offset 2)
+;; set default ccmode indent to tabs
+(setq c-default-style "linux"
+      c-basic-offset 8
+      tab-width 8
+      indent-tabs-mode t)
+
 ;; set js indent to 2
 (setq js-indent-level 2)
 
