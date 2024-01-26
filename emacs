@@ -204,3 +204,23 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-lock-comment-face ((t (:foreground "firebrick")))))
+
+;; use melpa
+(require 'package)
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize)
+
+;; Install use-package if not already installed
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; install rustic for rust dev
+;; note that this requires lsp-mode and rust-analyzer
+;; rustup component add rust-src
+;; rustup component add rust-analyzer
+(unless (package-installed-p 'rustic)
+  (package-refresh-contents)
+  (package-install 'rustic))
+(use-package rustic)
