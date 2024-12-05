@@ -65,7 +65,15 @@
 
 ;; maximize in linux (harmless on windows?)
 (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ido-enable-flex-matching t)
+ '(ido-enable-regexp t)
+ '(inhibit-startup-screen t)
+ '(initial-frame-alist '((fullscreen . maximized)))
+ '(package-selected-packages '(rustic csharp-mode)))
 
 ;; Start up a named shell in the current buffer
 (defun start-shell (name)
@@ -172,12 +180,11 @@
   (global-set-key [C-M-tab] 'clang-format-region)
 )
 
-;; org-mode! for note taking and task completion
-(require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
+;; use melpa
+(require 'package)
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize)
 
 ;; ido mode for awesome completions
 (require 'ido)
@@ -193,14 +200,7 @@
 ;; use a theme, requires emacs 24
 (load-theme 'wombat t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ido-enable-flex-matching t)
- '(ido-enable-regexp t)
- '(inhibit-startup-screen t))
+
 ;; overrides comment color in our theme. Makes comments red.
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -209,16 +209,15 @@
  ;; If there is more than one, they won't work right.
  '(font-lock-comment-face ((t (:foreground "firebrick")))))
 
-;; use melpa
-(require 'package)
-(setq package-archives '(("melpa" . "http://melpa.org/packages/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
-
 ;; Install use-package if not already installed
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(unless (package-installed-p 'lsp-mode)
+  (package-refresh-contents)
+  (package-install 'lsp-mode))
+(use-package lsp-mode)
 
 ;; install rustic for rust dev
 ;; note that this requires lsp-mode and rust-analyzer
