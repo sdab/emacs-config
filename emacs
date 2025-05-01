@@ -59,14 +59,14 @@
 
 ;; Use bind-key for managing keybindings
 (use-package bind-key
-  :ensure t
+  :ensure t ; Install if not present
   :bind* (("C-j" . copy-region-as-kill) ; shortcut for copy-region-as kill that overrides all other modes.
           ("C-o" . other-window) ; global shortcut for other-window
           ("C-c c" . compile))) ; global shortcut for compilation
 
 ;; Use IDO for completions
-(use-package ido
-  :ensure t
+(use-package ido ; ido is available on GNU ELPA
+  :ensure t ; Install if not present
   :init (ido-mode t)
   :custom
   (ido-enable-flex-matching t)
@@ -159,27 +159,21 @@
   (interactive)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil))
-;; untabify is often not desired if indent-tabs-mode is nil, and indent-region handles tabs/spaces based on mode settings.
-;; (untabify (point-min) (point-max))
 
 ;; go mode (if installed)
-(when (file-directory-p "~/.emacs.d/go-mode")
-  (use-package go-mode-load
-    :load-path "~/.emacs.d/go-mode"
-    :demand t ; Load eagerly as before
-    :hook (go-mode . (lambda () (add-hook 'before-save-hook #'gofmt-before-save nil t) (local-set-key (kbd "M-.") #'godef-jump))) ; Recommended hooks from go-mode.el documentation
-    :bind (:map go-mode-map ; Bind keys specific to go-mode
-                ("C-c C-a" . go-import-add) ("C-c C-j" . godef-jump) ("C-x 4 C-c C-j" . godef-jump-other-window) ("C-c C-d" . godef-describe))))
+(use-package go-mode
+  :ensure t ; Install if not present
+  :hook (go-mode . (lambda () (add-hook 'before-save-hook #'gofmt-before-save nil t) (local-set-key (kbd "M-.") #'godef-jump))) ; Recommended hooks from go-mode.el documentation
+  :bind (:map go-mode-map ; Bind keys specific to go-mode
+              ("C-c C-a" . go-import-add) ("C-c C-j" . godef-jump) ("C-x 4 C-c C-j" . godef-jump-other-window) ("C-c C-d" . godef-describe)))
 
 ;; adds the clangformat tool for c++ formatting.
 ;; Need to install the clang-format cmd line tool
 ;; seperately. Try apt-cache search clang-format
 ;; to see available packages on ubuntu.
-(when (file-directory-p "~/.emacs.d/clang-format")
-  (use-package clang-format
-    :load-path "~/.emacs.d/clang-format"
-    :demand t ; Load eagerly as before
-    :bind (([C-M-tab] . clang-format-region))))
+(use-package clang-format
+  :ensure t ; Install if not present
+  :bind (([C-M-tab] . clang-format-region)))
 
 ;; Start emacs server so emacsclient can be used
 (server-start)
@@ -201,10 +195,10 @@
  ;; If there is more than one, they won't work right. This block is fine as is.
  '(font-lock-comment-face ((t (:foreground "firebrick")))))
 
-;; Install lsp-mode and rustic via package.el (use-package handles this with :ensure t)
-(use-package lsp-mode :ensure t)
+;; Install lsp-mode and rustic via package.el
 ;; install rustic for rust dev
 ;; note that this requires lsp-mode and rust-analyzer
 ;; rustup component add rust-src
 ;; rustup component add rust-analyzer
+(use-package lsp-mode :ensure t)
 (use-package rustic :ensure t)
