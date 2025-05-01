@@ -9,6 +9,11 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+;; Load Windows specific settings if on Windows
+(when (eq system-type 'windows-nt)
+  (load "windows-settings.el"))
+
+
 ;; copy line rather than kill
 (defun copy-line (arg)
     "Copy lines (as many as prefix argument) in the kill ring.
@@ -74,14 +79,6 @@
 
 ;; use hippie expand
 (global-set-key "\C-x\C-x" 'hippie-expand)
-
-;; windows specific settings
-(when (eq system-type 'windows-nt)
-  ;; start fullscreen in windows
-  (w32-send-sys-command 61488)
-  ;; set python unbuffered otherwise we dont flush prints
-  (setenv "PYTHONUNBUFFERED" "x")
-)
 
 ;; Start up a named shell in the current buffer
 (defun start-shell (name)
