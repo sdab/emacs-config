@@ -9,6 +9,8 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(setq load-path (cons "~/.emacs.d/custom" load-path))
+
 ;; Load Windows specific settings if on Windows
 (when (eq system-type 'windows-nt)
   (load "windows-settings.el"))
