@@ -44,6 +44,9 @@
 ;; use hippie expand
 (global-set-key "\C-x\C-x" 'hippie-expand)
 
+;; Goto-line short-cut key
+(global-set-key "\C-l" 'goto-line)
+
 ;; indents the whole file
 (defun indent-all ()
   "indent whole buffer"

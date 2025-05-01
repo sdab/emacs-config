@@ -33,9 +33,6 @@
 ;; Set debugging to true, make errors more verbose
 ;; (setq debug-on-error t)
 
-;; Goto-line short-cut key
-(global-set-key "\C-l" 'goto-line)
-
 ;; set default ccmode indent to tabs
 (setq c-default-style "linux"
       c-basic-offset 8
@@ -84,7 +81,6 @@
 
 ;; use a theme, requires emacs 24
 (load-theme 'wombat t)
-
 
 ;; overrides comment color in our theme. Makes comments red.
 (custom-set-faces
